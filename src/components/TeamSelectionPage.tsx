@@ -36,10 +36,10 @@ export default function TeamSeletionPage() {
   return (
     <Container>
       <h2>{"ESCOLHE A TUA EQUIPA"}</h2>
-      <Button onClick={() => buttonPressed("red")} themeColor={"#f64646"}>RED</Button>
-      <Button onClick={() => buttonPressed("blue")} themeColor={"#76bcea"}>BLUE</Button>
-      <Button onClick={() => buttonPressed("yellow")} themeColor={"#cece57"}>YELLOW</Button>
-      <Button onClick={() => buttonPressed("green")} themeColor={"#7fcd77"}>GREEN</Button>
+      <Button onClick={() => buttonPressed("Red")} themeColor={"#f64646"}>RED</Button>
+      <Button onClick={() => buttonPressed("Blue")} themeColor={"#76bcea"}>BLUE</Button>
+      <Button onClick={() => buttonPressed("Yellow")} themeColor={"#cece57"}>YELLOW</Button>
+      <Button onClick={() => buttonPressed("Green")} themeColor={"#7fcd77"}>GREEN</Button>
     </Container>
   );
 }

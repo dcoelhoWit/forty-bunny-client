@@ -12,6 +12,7 @@ import {
 } from "./utils/Parser";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import TeamSeletionPage from "./components/TeamSelectionPage";
+import InactivePage from "./components/InactivePage";
 
 function App() {
   const [questions, setQuestions] = useState<Question[]>([]);
@@ -81,6 +82,11 @@ function App() {
     return question;
   }
 
+  function anyTeamSelected(): Boolean {
+    const team = document.documentElement.style.getPropertyValue("--team");
+    return team !== "";
+  }
+
   return (
     <AppContainer>
       <Container>
@@ -88,7 +94,7 @@ function App() {
           <Routes>
             <Route
               path="/"
-              element={activeQuestionIndex !== "" ? <QuestionPage question={getQuestion(activeQuestionIndex)}></QuestionPage> : <TeamSeletionPage></TeamSeletionPage>}
+              element={activeQuestionIndex !== "" ? <QuestionPage question={getQuestion(activeQuestionIndex)}></QuestionPage> : (anyTeamSelected()? <InactivePage></InactivePage> : <TeamSeletionPage></TeamSeletionPage>)}
             ></Route>
           </Routes>
         </Router>

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import React, { useState } from "react";
 import { Question } from "../utils/Parser";
+import { setAnswer } from "../utils/FirebaseSetter";
 
 // Style
 const Container = styled.div`
@@ -27,8 +28,10 @@ interface QuestionPageProps {
 // Component
 export default function QuestionPage({ question }: QuestionPageProps) {
   const [selectedOption, setSelectedOption] = useState<string>("");
+  const team = document.documentElement.style.getPropertyValue("--team");
 
-  function buttonPressed(option: string) {
+  function buttonPressed(option: string) { 
+    setAnswer(question.index, option, team);
     setSelectedOption(option);
   }
 
