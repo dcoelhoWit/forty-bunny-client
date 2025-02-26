@@ -16,7 +16,7 @@ body {
 	display: grid;
 	font-size: 1.6rem;
 	place-items: center;
-  background: var(--teamColor);
+  	background: var(--teamColor, linear-gradient(to right bottom, #a0a0a0, #464646));
 	font-family: Rockwell, "Courier New", Courier, Georgia, Times,
 		"Times New Roman", serif;
 }

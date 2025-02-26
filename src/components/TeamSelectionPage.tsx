@@ -1,6 +1,7 @@
 import styled from "styled-components";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { getTeamColor } from "../utils/TeamColors";
+import WaitingLobby from "./WaitingLobby";
 
 // Style
 const Container = styled.div`
@@ -22,24 +23,45 @@ const Button = styled.button<{ themeColor: string }>`
 // Component
 export default function TeamSeletionPage() {
 
-  // Set Default Color (No Team)
-  useEffect(() => {
-    document.documentElement.style.setProperty("--teamColor", "linear-gradient(to right bottom, #a0a0a0, #464646)");
-    document.documentElement.style.setProperty("--team", "");
-  });
+  const [selectedTeam, setSelectedTeam] = useState<string>("");
 
   function buttonPressed(team: string) {
-    document.documentElement.style.setProperty("--teamColor", getTeamColor(team));
+    document.documentElement.style.setProperty(
+      "--teamColor",
+      getTeamColor(team)
+    );
     document.documentElement.style.setProperty("--team", team);
+    setSelectedTeam(team);
   }
 
-  return (
-    <Container>
-      <h2>{"ESCOLHE A TUA EQUIPA"}</h2>
-      <Button onClick={() => buttonPressed("Red")} themeColor={"#f64646"}>RED</Button>
-      <Button onClick={() => buttonPressed("Blue")} themeColor={"#76bcea"}>BLUE</Button>
-      <Button onClick={() => buttonPressed("Yellow")} themeColor={"#cece57"}>YELLOW</Button>
-      <Button onClick={() => buttonPressed("Green")} themeColor={"#7fcd77"}>GREEN</Button>
-    </Container>
-  );
+  const renderContent = () => {
+    if (selectedTeam === undefined || selectedTeam.length === 0) {
+      // No team selected: show team selector
+      return (
+        <Container>
+          <h2>{"ESCOLHE A TUA EQUIPA"}</h2>
+          <Button onClick={() => buttonPressed("Red")} themeColor={"#f64646"}>
+            LEÕES DA PRADARIA
+          </Button>
+          <Button onClick={() => buttonPressed("Blue")} themeColor={"#76bcea"}>
+            PÁSSAROS MALUCOS
+          </Button>
+          <Button
+            onClick={() => buttonPressed("Yellow")}
+            themeColor={"#cece57"}
+          >
+            RATOS-ESQUILOS
+          </Button>
+          <Button onClick={() => buttonPressed("Green")} themeColor={"#7fcd77"}>
+            COBRA ZAROLHA
+          </Button>
+        </Container>
+      );
+    } else {
+      // Team already selected: show waiting screen
+      return <WaitingLobby team= {selectedTeam}/>;
+    }
+  };
+
+  return <>{renderContent()}</>;
 }
