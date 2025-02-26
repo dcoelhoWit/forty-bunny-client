@@ -1,21 +1,9 @@
 import styled from "styled-components";
-import React, { useEffect } from "react";
+import React from "react";
 
 // Style
 const Container = styled.div`
   text-align: center;
-`;
-
-const Button = styled.button<{ themeColor: string }>`
-  background-color: ${(props) => props.themeColor || "gray"};
-  color: white;
-  width: 40rem;
-  text-align: center;
-  border-radius: 3rem;
-  padding: 1.1rem 1.5rem 1.1rem 1.5rem;
-  font-size: x-large;
-  font-weight: bold;
-  margin-bottom: 15px;
 `;
 
 // Props
